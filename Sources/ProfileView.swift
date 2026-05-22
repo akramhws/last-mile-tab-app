@@ -3,34 +3,38 @@ import SwiftUI
 struct ProfileView: View {
     var body: some View {
         NavigationStack {
-            List {
-                Section {
-                    HStack(spacing: 16) {
-                        Image(systemName: "person.circle.fill")
-                            .font(.system(size: 56))
-                            .foregroundStyle(.blue)
-                        VStack(alignment: .leading) {
-                            Text("اسم المستخدم")
-                                .font(.headline)
-                            Text("user@example.com")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        }
-                    }
-                    .padding(.vertical, 8)
-                }
-                Section("الإعدادات") {
-                    Label("الإشعارات", systemImage: "bell")
-                    Label("الخصوصية", systemImage: "lock")
-                    Label("المساعدة", systemImage: "questionmark.circle")
-                }
-                Section {
-                    Button(role: .destructive) {} label: {
-                        Label("تسجيل الخروج", systemImage: "rectangle.portrait.and.arrow.right")
-                    }
-                }
+            VStack(spacing: 24) {
+                Circle()
+                    .fill(
+                        LinearGradient(
+                            colors: [AppConfig.primaryColor, AppConfig.accentColor],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                    .frame(width: 90, height: 90)
+                    .overlay(
+                        Text("👤")
+                            .font(.system(size: 40))
+                    )
+
+                Text("المستخدم")
+                    .font(.system(.title2, design: AppConfig.fontDesign).bold())
+
+                Text("user@example.com")
+                    .font(.system(.subheadline, design: AppConfig.fontDesign))
+                    .foregroundStyle(.secondary)
+
+                Button("تعديل الملف") {}
+                    .buttonStyle(.borderedProminent)
+                    .tint(AppConfig.primaryColor)
+
+                Spacer()
             }
-            .navigationTitle("حسابي")
+            .padding(.top, 32)
+            .padding()
+            .navigationTitle(AppConfig.tab3Label)
+            .background(AppConfig.backgroundColor.ignoresSafeArea())
         }
     }
 }
