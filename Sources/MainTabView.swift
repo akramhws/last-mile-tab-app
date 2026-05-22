@@ -1,21 +1,25 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @State private var selectedTab = 0
-
     var body: some View {
-        TabView(selection: $selectedTab) {
+        TabView {
             HomeView()
-                .tabItem { Label("الرئيسية", systemImage: "house.fill") }
-                .tag(0)
-
+                .tabItem {
+                    Label(AppConfig.tab1Label, systemImage: "house.fill")
+                }
             ExploreView()
-                .tabItem { Label("استكشاف", systemImage: "magnifyingglass") }
-                .tag(1)
-
+                .tabItem {
+                    Label(AppConfig.tab2Label, systemImage: "magnifyingglass")
+                }
             ProfileView()
-                .tabItem { Label("حسابي", systemImage: "person.fill") }
-                .tag(2)
+                .tabItem {
+                    Label(AppConfig.tab3Label, systemImage: "person.fill")
+                }
         }
+        .tint(AppConfig.primaryColor)
     }
+}
+
+#Preview {
+    MainTabView()
 }
